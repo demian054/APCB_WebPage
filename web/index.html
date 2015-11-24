@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>APCB_WebPage</title>
+        
+	<!--link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=5caac04f688d89b2c49bcb280190366b">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+	<script type="text/javascript" src="/media/js/site.js?_=9ad178ec05bb06ee71b95575190666d3"></script>
+ <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+ <script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fbasic_init%2Fzero_configuration.html" async></script>
+	
+	</style-->
+        
+        
+        
+        <link rel="stylesheet" type="text/css" href="Libs/DataTable/dataTables.jqueryui.min.css">
+        <link rel="stylesheet" href="Libs/JqueryUI/jquery-ui.min.css"/>
+        
+        <script type="text/javascript" language="javascript" src="Libs/DataTable/jQuery-2.1.4/jquery-2.1.4.js"></script>
+        <script type="text/javascript" language="javascript" src="Libs/DataTable/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="Libs/DateFormat/dateFormat.min.js" ></script>
+
+        <script type="text/javascript" language="javascript" src="Libs/DataTable/dataTables.jqueryui.min.js"></script>
+	<script type="text/javascript" language="javascript" src="Libs/DataTable/datatables.js"></script>
+	<script type="text/javascript" class="init">
+
+var defaultDateFormat = "dd/MM/yyyy hh:mm a";    
+    
+function renderCalendar( data ) {
+        var date = new Date(data.year, 
+                 data.month,
+                 data.dayOfMonth,
+                 data.hourOfDay,
+                 data.minute, 
+                 data.second,
+                 0);
+        return DateFormat.format.date(date, defaultDateFormat) ;
+        };
+                
+    
+$(document).ready(function() {
+	$('#example').dataTable( {
+            jQueryUI: true,
+            ajax: {
+                "url": "http://localhost:8080/APCB_InterfaceWeb/airTcket/h",//"http://localhost:8080/APCB_WebPageJSP/newhtml_1.html",
+                "dataSrc": function ( json ) {
+                    return json.beam.objectStr.destinationOption;
+                  }
+              },
+                "columns": [
+                    { "data": "FlightNumber" },
+                    { "data": function(data) { return renderCalendar( data.departureDateTime );}},
+                    { "data": function(data) { return renderCalendar( data.arrivalDateTime );}},
+                    { "data": "JourneyDuration" },
+                    { "data": "FlightNumber" },
+                    { "data": "FlightNumber" }
+                ]
+            
+          } );
+} );
+//"data": "FlightNumber"
+
+
+	</script>
+</head>
+<body class="wide comments example">
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+ <table id="example" class="display" cellspacing="0" width="100%">
+       
+        <thead>
+                <tr>
+                        <th>FlightNumber</th>
+                        <th>departureDateTime</th>
+                        <th>arrivalDateTime</th>
+                        <th>JourneyDuration</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                </tr>
+        </thead>
+        
+    </table>
+    </body>
+</html>
